@@ -5,6 +5,7 @@ import hn.unah.lenguajes1900.examen.entities.Cuentas;
 public interface CuentaService {
     
     public Cuentas crearCuenta(Cuentas cuentas);
+    
 
     
 }
