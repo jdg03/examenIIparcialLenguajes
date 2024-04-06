@@ -7,8 +7,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import hn.unah.lenguajes1900.examen.entities.Cliente;
@@ -40,6 +42,12 @@ public class ClienteController {
     @GetMapping("/obtenerClienteId/{dni}")
     public Optional<Cliente> obtenerClienteId(@PathVariable String dni){
         return this.clienteServiceImpl.ObtenerclientePorDni(dni);
+    }
+
+    @PutMapping("/asociarCuentaCliente")
+    public Cliente asociarCuentaCliente(@PathVariable String dni, @RequestParam String numerocuenta){
+
+        return this.clienteServiceImpl.asociarCuentaCliente(dni, numerocuenta);
     }
     
 }

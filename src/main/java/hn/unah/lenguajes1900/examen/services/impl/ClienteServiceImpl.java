@@ -52,8 +52,30 @@ public class ClienteServiceImpl implements ClienteService {
 
     @Override
     public Cliente asociarCuentaCliente(String dni, String numerocuenta) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'asociarCuentaCliente'");
+       
+        Optional<Cliente> clienteOptional = clienteRepository.findById(dni);
+        if (!clienteOptional.isPresent()) {
+         return null;
+        }
+        Cliente cliente = clienteOptional.get();
+
+      
+        Optional<Cuentas> cuentaOptional = cuentasRepository.findById(numerocuenta);
+        if (!cuentaOptional.isPresent()) {
+            return null;
+        }
+        Cuentas cuenta = cuentaOptional.get();
+
+        // Verificar si la cuenta ya está asociada a otro cliente
+        if (cuenta.getDni() != null && !cuenta.getDni().getDni().equals(dni)) {
+           return null;
+        }
+
+        
+        cuenta.setDni(cliente);
+        cuentasRepository.save(cuenta);
+
+        return cliente;
     }
 
     @Override

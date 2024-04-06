@@ -2,7 +2,7 @@ package hn.unah.lenguajes1900.examen.services;
 
 import hn.unah.lenguajes1900.examen.entities.Movimientos;
 
-public interface MovimientService {
+public interface MovimientoService {
     
     public Movimientos CrearMovimiento(Movimientos movimiento);
 
